@@ -8,13 +8,15 @@
 		DialogHeader,
 		DialogTitle
 	} from '$lib/components/ui/dialog';
+	import type { User } from '@prisma/client';
 
 	type Props = {
 		onOpenChange: (state: boolean) => void;
 		open: boolean;
+		user: User;
 	};
 
-	let { onOpenChange, open }: Props = $props();
+	let { onOpenChange, open, user }: Props = $props();
 </script>
 
 <Dialog {open} {onOpenChange}>
@@ -26,8 +28,10 @@
 			</DialogDescription>
 		</DialogHeader>
 		<DialogFooter>
-			<Button type="submit" variant="destructive">Delete</Button>
-			<Button on:click={() => onOpenChange(false)} variant="outline">Cancel</Button>
+			<form method="POST" action={`/users/${user.id}?/deleteUser`}>
+				<Button type="submit" variant="destructive">Delete</Button>
+				<Button on:click={() => onOpenChange(false)} variant="outline">Cancel</Button>
+			</form>
 		</DialogFooter>
 	</DialogContent>
 </Dialog>

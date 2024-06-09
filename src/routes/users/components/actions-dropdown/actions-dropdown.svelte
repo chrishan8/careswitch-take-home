@@ -9,24 +9,22 @@
 	import type { Row } from '@tanstack/table-core';
 	import type { User } from '@prisma/client';
 	import Button from '$lib/components/ui/button/button.svelte';
-	import DeleteDialog from './delete-dialog.svelte';
+	import DeleteDialog from '../delete-dialog/delete-dialog.svelte';
 
 	type Props = {
-		row: Row<User>;
+		user: User;
 	};
 
-	let { row }: Props = $props();
+	let { user }: Props = $props();
 
 	let open = $state(false);
 
-	function editUser(user: User) {
+	function editUser() {
 		// Logic to handle editing the user
 		console.log('Edit user:', user);
 	}
 
-	function deleteUser(user: User) {
-		// Logic to handle deleting the user
-		console.log('Delete user:', user);
+	function deleteUser() {
 		open = true;
 	}
 
@@ -35,7 +33,7 @@
 	}
 </script>
 
-<DeleteDialog {open} {onOpenChange} />
+<DeleteDialog {open} {onOpenChange} {user} />
 <DropdownMenu>
 	<DropdownMenuTrigger>
 		<Button variant="outline" size="icon">
@@ -43,7 +41,7 @@
 		</Button>
 	</DropdownMenuTrigger>
 	<DropdownMenuContent>
-		<DropdownMenuItem on:click={() => editUser(row.original)}>Edit</DropdownMenuItem>
-		<DropdownMenuItem on:click={() => deleteUser(row.original)}>Delete</DropdownMenuItem>
+		<DropdownMenuItem on:click={() => editUser()}>Edit</DropdownMenuItem>
+		<DropdownMenuItem on:click={() => deleteUser()}>Delete</DropdownMenuItem>
 	</DropdownMenuContent>
 </DropdownMenu>
