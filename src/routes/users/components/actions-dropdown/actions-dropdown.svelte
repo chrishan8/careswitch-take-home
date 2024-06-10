@@ -1,4 +1,6 @@
 <script lang="ts">
+	import Button from '$lib/components/ui/button/button.svelte';
+	import DeleteDialog from '../delete-dialog/delete-dialog.svelte';
 	import {
 		DropdownMenu,
 		DropdownMenuTrigger,
@@ -6,10 +8,8 @@
 		DropdownMenuItem
 	} from '$lib/components/ui/dropdown-menu';
 	import EllipsisVertical from 'lucide-svelte/icons/ellipsis-vertical';
-	import type { Row } from '@tanstack/table-core';
+	import { goto } from '$app/navigation';
 	import type { User } from '@prisma/client';
-	import Button from '$lib/components/ui/button/button.svelte';
-	import DeleteDialog from '../delete-dialog/delete-dialog.svelte';
 
 	type Props = {
 		user: User;
@@ -20,8 +20,7 @@
 	let open = $state(false);
 
 	function editUser() {
-		// Logic to handle editing the user
-		console.log('Edit user:', user);
+		goto(`/users/${user.id}/edit`);
 	}
 
 	function deleteUser() {

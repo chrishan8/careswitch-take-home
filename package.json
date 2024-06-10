@@ -45,10 +45,10 @@
 		"vaul-svelte": "^0.3.1",
 		"vite": "^5.0.3",
 		"zod": "^3.23.8",
-		"zod-prisma": "^0.5.4"
+		"zod-prisma-types": "^3.1.8"
 	},
 	"dependencies": {
-		"@paralleldrive/cuid2": "^2.2.2",
+		"@tanstack/match-sorter-utils": "^8.15.1",
 		"@tanstack/table-core": "^8.17.3"
 	}
 }
